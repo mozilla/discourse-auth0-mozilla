@@ -1,0 +1,18 @@
+.auth0-lock-input {
+  margin-bottom: 0px !important;
+}
+
+.auth0-lock-header-bg {
+  background: #d7d3c8;
+}
+
+.auth0-label-submit {
+  color:#4d4e53;
+  font-weight:600;
+}
+
+button.auth0-lock-submit {display: none;}
+
+.auth0-lock-form > div > div.auth0-lock-pane-separator {display: none;}
+
+.auth0-lock-form > div > div.auth-lock-social-buttons-pane {display: inherit;}
