@@ -35,14 +35,14 @@ export default {
         }
       }
 
-      var lock = new Auth0LockPasswordless(client_id, domain)
-
       ApplicationRoute.reopen({
         actions: {
           showLogin: function() {
+            var lock = new Auth0LockPasswordless(client_id, domain)
             lock.magiclink(options)
           },
           showCreateAccount: function () {
+            var lock = new Auth0LockPasswordless(client_id, domain)
             lock.magiclink(options)
           }
         }
