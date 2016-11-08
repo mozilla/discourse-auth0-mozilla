@@ -16,3 +16,7 @@ button.auth0-lock-submit {display: none;}
 .auth0-lock-form > div > div.auth0-lock-pane-separator {display: none;}
 
 .auth0-lock-form > div > div.auth-lock-social-buttons-pane {display: inherit;}
+
+.sign-up-button {
+  display: none !important;
+}
