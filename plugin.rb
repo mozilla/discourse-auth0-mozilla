@@ -1,7 +1,7 @@
-# name: auth0
-# about: Authenticate with auth0
+# name: auth0-mozilla
+# about: Authenticate with auth0 (for mozilla)
 # version: 2.0.0
-# authors: Jose Romaniello
+# authors: Jose Romaniello, Leo McArdle
 
 require 'auth/oauth2_authenticator'
 
