@@ -1,13 +1,13 @@
 # name: auth0-mozilla
 # about: Authenticate with auth0 (for mozilla)
-# version: 2.0.1
+# version: 2.0.2
 # authors: Jose Romaniello, Leo McArdle
 
-require 'auth/oauth2_authenticator'
+class Auth0Authenticator < ::Auth::Authenticator
 
-require File.dirname(__FILE__) + "/../../app/models/oauth2_user_info"
-
-class Auth0Authenticator < ::Auth::OAuth2Authenticator
+  def name
+    'auth0'
+  end
 
   def after_authenticate(auth_token)
     result = Auth::Result.new
@@ -17,8 +17,6 @@ class Auth0Authenticator < ::Auth::OAuth2Authenticator
     result.email = email = data[:email]
     result.name = name = data[:name]
 
-    oauth2_user_info = Oauth2UserInfo.where(uid: oauth2_uid, provider: 'Auth0').first
-
     result.extra_data = {
       uid: oauth2_uid,
       provider: 'Auth0',
@@ -26,18 +24,8 @@ class Auth0Authenticator < ::Auth::OAuth2Authenticator
       email: email,
     }
 
-    result.user = oauth2_user_info.try(:user)
+    result.user = User.find_by_email(email)
     result.email_valid = data[:email] && data[:email_verified]
-
-    if !result.user && !email.blank? && result.email_valid
-      if result.user = User.find_by_email(email)
-        Oauth2UserInfo.create({ uid: oauth2_uid,
-                        provider: 'Auth0',
-                        name: name,
-                        email: email,
-                        user_id: result.user.id })
-      end
-    end
 
     result
   end
@@ -126,5 +114,5 @@ register_asset "stylesheets/auth0.scss"
 
 auth_provider :title => 'Auth0',
     :message => 'Log in via Auth0',
-    :authenticator => Auth0Authenticator.new('auth0', trusted: true),
+    :authenticator => Auth0Authenticator.new,
     :full_screen_login => true
