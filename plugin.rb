@@ -2,6 +2,7 @@
 # about: Authenticate with auth0 (for mozilla)
 # version: 2.0.2
 # authors: Jose Romaniello, Leo McArdle
+# url: https://github.com/mozilla/discourse-auth0-mozilla
 
 class Auth0Authenticator < ::Auth::Authenticator
 
