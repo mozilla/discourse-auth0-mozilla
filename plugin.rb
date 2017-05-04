@@ -1,6 +1,6 @@
 # name: auth0-mozilla
 # about: Authenticate with auth0 (for mozilla)
-# version: 2.0.2
+# version: 2.0.3
 # authors: Jose Romaniello, Leo McArdle
 # url: https://github.com/mozilla/discourse-auth0-mozilla
 
